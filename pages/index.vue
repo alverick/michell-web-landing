@@ -29,7 +29,7 @@
       <div class="container-modal">
         <a :href="banner.link" target="_blank"
           ><img
-            :src="'https://dev.michell.com.pe/storage/' + banner.photo"
+            :src="'https://dev.michell.com.pe/storage/' + modalPhoto"
             alt=""
           />
         </a>
@@ -65,7 +65,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      banner: {},
+      banner: {} as any,
       selected: 'ContentHome',
       position: 0,
       componentProps: {} as any,
@@ -108,6 +108,14 @@ export default Vue.extend({
         modelGroups.News.companies.unshift('banner')
       }
       return modelGroups
+    },
+    modalPhoto(): string {
+      if (isEmpty(this.banner)) {
+        return ''
+      }
+      return isEmpty(this.banner.photo_modal)
+        ? this.banner.photo
+        : this.banner.photo_modal
     },
   },
   watch: {
