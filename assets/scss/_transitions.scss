@@ -1,0 +1,20 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-right-enter-active,
+.fade-right-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-right-enter,
+.fade-right-leave-to {
+  //opacity: 0;
+  transform: translateX(200px);
+}

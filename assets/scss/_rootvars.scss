@@ -1,0 +1,8 @@
+:root {
+  --header-height: 127px;
+  --footer-height: 50px;
+  @include media('>=2xl') {
+    --header-height: #{$header-height-2xl};
+    --footer-height: #{$footer-height-2xl};
+  }
+}
