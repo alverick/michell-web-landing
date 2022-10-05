@@ -40,10 +40,15 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
+import { CompanyItem } from '~/app/data/companies'
 
 export default Vue.extend({
   name: 'ContentItem',
   props: {
+    company: {
+      type: Object,
+      default: () => {},
+    } as PropOptions<CompanyItem>,
     name: {
       type: String,
       default: '',
@@ -87,8 +92,12 @@ export default Vue.extend({
       if (this.link !== '') {
         return this.link
       }
+      const urlPrefix = this.name === 'michellApu' ? 'dev.' : ''
+      const languageSuffix = this.company.linkTranslate
+        ? '/' + this.$i18n.locale
+        : ''
       const urlWithoutHtml = this.url.replace(/(&nbsp;|<([^>]+)>)/gi, '')
-      return `https://${urlWithoutHtml}`
+      return `https://${urlPrefix}${urlWithoutHtml}${languageSuffix}`
     },
     imagePath(): string {
       const srcImage = this.image.includes('http')

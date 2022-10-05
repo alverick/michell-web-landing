@@ -1,4 +1,17 @@
-export const companies = {
+export interface CompanyItem {
+  image: string
+  logo?: string
+  url?: string
+  link?: string
+  full?: boolean
+  textLogo?: string
+  linkTranslate?: boolean
+}
+export interface Companies {
+  [key: string]: CompanyItem
+}
+
+export const companies: Companies = {
   michell: {
     logo: 'Capa_x0020_1.svg',
     url: '<strong>michell</strong>.com.pe/michell',
@@ -53,6 +66,7 @@ export const companies = {
     logo: 'FibraEmprendedora.svg',
     url: '<strong>michell</strong>.com.pe/apu',
     image: 'fibra-13@2x.jpg',
+    linkTranslate: true,
   },
   origins: {
     logo: 'Capa-sus_x0020_1.svg',
@@ -72,3 +86,4 @@ export const companies = {
     image: 'DSC_8069@2x.jpg',
   },
 }
+

@@ -4,6 +4,7 @@
       v-for="(company, index) in companyProps"
       :key="index"
       :name="company"
+      :company="companiesData[company]"
       :full="companiesData[company].full"
       :logo="companiesData[company].logo"
       :text-logo="companiesData[company].textLogo"
@@ -28,8 +29,9 @@
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
 import { isEmpty } from 'ramda'
-import { companies } from '~/app/data/companies'
+import { Companies, companies } from '~/app/data/companies'
 import ContentItem from '~/components/landing/ContentItem.vue'
+import { BannerType } from '~/app/model/banner'
 
 export default Vue.extend({
   name: 'ContentGeneric',
@@ -42,10 +44,10 @@ export default Vue.extend({
     banner: {
       type: Object,
       default: () => {},
-    } as PropOptions<any>,
+    } as PropOptions<BannerType>,
   },
   computed: {
-    companiesData() {
+    companiesData(): Companies {
       if (!isEmpty(this.banner)) {
         companies.banner = {
           full: true,
