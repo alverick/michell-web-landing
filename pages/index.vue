@@ -35,30 +35,18 @@
         </a>
       </div>
     </modal>
-    <a class="modal-button" @click="openModal">Last News</a>
   </div>
 </template>
 
 <script lang="ts">
-import { isEmpty, pathOr } from 'ramda'
-import Vue from 'vue'
-
-interface bannerType {
-  updated_at: string
-  name: string
-  link: string
-  logo: null
-  photo: string
-  created_at: string
-  id: number
-  deleted_at: null
-  status: number
-}
+import { isEmpty, pathOr } from "ramda";
+import Vue from "vue";
+import { BannerType } from "~/app/model/banner";
 
 export default Vue.extend({
   name: 'IndexPage',
   async asyncData({ $axios }) {
-    const banner: bannerType = await $axios.$get(
+    const banner: BannerType = await $axios.$get(
       'https://dev.michell.com.pe/api/landing'
     )
     return { banner }
