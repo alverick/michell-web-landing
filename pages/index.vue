@@ -39,18 +39,11 @@
 </template>
 
 <script lang="ts">
-import { isEmpty, pathOr } from "ramda";
-import Vue from "vue";
-import { BannerType } from "~/app/model/banner";
+import { isEmpty, pathOr } from 'ramda'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'IndexPage',
-  async asyncData({ $axios }) {
-    const banner: BannerType = await $axios.$get(
-      'https://dev.michell.com.pe/api/landing'
-    )
-    return { banner }
-  },
   data() {
     return {
       banner: {} as any,
@@ -114,10 +107,18 @@ export default Vue.extend({
       this.isVisibleMenu = newValue
     },
   },
+  beforeMount() {
+    this.loadBanner()
+  },
   mounted() {
     this.openModal()
   },
   methods: {
+    async loadBanner() {
+      this.banner = await this.$axios.$get(
+        'https://dev.michell.com.pe/api/landing'
+      )
+    },
     openModal() {
       this.$modal.show('news')
     },
